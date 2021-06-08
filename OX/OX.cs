@@ -130,26 +130,29 @@ namespace OX
 
         void changeActivs(int a)
         {
-
-            var winner = OXA.games[a].Winner;
-            if (winner == Players.Nobody)
+            if (!OXA.InetrTurn)
             {
-                new Thread(() => { 
-                    Thread.Sleep(150); 
-                    BeginInvoke((MethodInvoker)delegate 
+                var winner = OXA.games[a].Winner;
+                if (winner == Players.Nobody)
+                {
+                    new Thread(() =>
                     {
-                        foreach (var x in OXA.games)
-                            x.Enabled = false;
-                        OXA.games[a].Enabled = true;
-                    }); 
-                    
-                }).Start();
-                
-            }
-            else
-                foreach (var x in OXA.games)
-                    x.Enabled = true;
+                        Thread.Sleep(1000);
+                        BeginInvoke((MethodInvoker)delegate
+                        {
+                            foreach (var x in OXA.games)
+                                x.Enabled = false;
+                            OXA.games[a].Enabled = true;
+                            OXA.InetrTurn = false;
+                        });
 
+                    }).Start();
+
+                }
+                else
+                    foreach (var x in OXA.games)
+                        x.Enabled = true;
+            }
         }
 
         private void tile2_Click(object sender, EventArgs e)

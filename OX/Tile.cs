@@ -32,20 +32,22 @@ namespace OX
 
         private void Tile_Click(object sender, EventArgs e)
         {
-            if (!Clicked)
+            if (!Clicked && !OXA.InetrTurn)
             {
                 _state = NextSet;
                 Clicked = true;
+                OXA.InetrTurn = true;
             }
             Refresh();
         }
 
         public void OnClick(Players player)
         {
-            if (!Clicked)
+            if (!Clicked && !OXA.InetrTurn)
             {                
                 _state = player;
                 Clicked = true;
+                OXA.InetrTurn = true;
             }
             Refresh();
         }

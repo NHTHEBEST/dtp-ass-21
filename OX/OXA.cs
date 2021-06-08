@@ -13,6 +13,7 @@ namespace OX
 {
     public partial class OXA : UserControl
     {
+        public static bool InetrTurn = false;
         //static Players Turn_all = Players.Player1;
         (int t1, int t2, int t3)[] WinCombos =
         {
