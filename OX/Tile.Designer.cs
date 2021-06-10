@@ -36,6 +36,7 @@ namespace OX
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Name = "Tile";
+            this.Load += new System.EventHandler(this.Tile_Load);
             this.ResumeLayout(false);
 
         }

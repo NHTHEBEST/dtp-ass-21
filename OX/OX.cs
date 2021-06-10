@@ -79,7 +79,7 @@ namespace OX
         private void Tile_Click(object sender, EventArgs e)
         {
             //OnClick(e);
-            if (Enabled)
+            if (Enabled && !OXA.InetrTurn)
             {
                 if (Winner != Players.Nobody)
                     setState(Winner);
