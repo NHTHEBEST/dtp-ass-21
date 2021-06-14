@@ -116,6 +116,7 @@ namespace OX
                 //oxa.AlternativeClick();
                 OnClick(e);
                 Refresh();
+                OXA.WaitForWinnerFill = false;
             }
         }
 
@@ -132,26 +133,26 @@ namespace OX
         {
             if (!OXA.InetrTurn)
             {
-                var winner = OXA.games[a].Winner;
-                if (winner == Players.Nobody)
+                new Thread(() =>
                 {
-                    new Thread(() =>
+                    //Thread.Sleep(1000);
+                    while (OXA.WaitForWinnerFill) ;
+                    BeginInvoke((MethodInvoker)delegate
                     {
-                        Thread.Sleep(1000);
-                        BeginInvoke((MethodInvoker)delegate
+                        var winner = OXA.games[a].Winner;
+                        if (winner == Players.Nobody)
                         {
                             foreach (var x in OXA.games)
                                 x.Enabled = false;
                             OXA.games[a].Enabled = true;
-                            OXA.InetrTurn = false;
-                        });
-
-                    }).Start();
-
-                }
-                else
-                    foreach (var x in OXA.games)
-                        x.Enabled = true;
+                        }
+                        else
+                            foreach (var x in OXA.games)
+                                x.Enabled = true;
+                    });
+                    OXA.InetrTurn = false;
+                    OXA.WaitForWinnerFill = true;
+                }).Start();
             }
         }
 
