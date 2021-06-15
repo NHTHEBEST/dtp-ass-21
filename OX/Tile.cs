@@ -95,8 +95,11 @@ namespace OX
                 case Players.Player2:
                     e.Graphics.Clear(Player2Enabled);
                     break;
-    
-            }else
+                default:
+                    break;
+
+                }
+            else
                 switch (_state)
                 {
                     case Players.Nobody:
@@ -107,6 +110,8 @@ namespace OX
                         break;
                     case Players.Player2:
                         e.Graphics.Clear(Player2Disabled);
+                        break;
+                    default:
                         break;
                 }
 

@@ -97,6 +97,8 @@ namespace OX
                             case Players.Player2:
                                 _turn = Players.Player1;
                                 break;
+                            default:
+                                break;
                         }
                         OXA.SetTurn(_turn);
                     }
