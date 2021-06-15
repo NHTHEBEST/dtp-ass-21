@@ -82,7 +82,7 @@ namespace OX
 
         protected override void OnPaint(PaintEventArgs e)
         {
-            //base.OnPaint(e);
+            
             if (Enabled)
             switch (_state)
             {

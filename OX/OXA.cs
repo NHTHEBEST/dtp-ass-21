@@ -15,7 +15,7 @@ namespace OX
     {
         public static bool InetrTurn = false;
         public static bool WaitForWinnerFill = true;
-        //static Players Turn_all = Players.Player1;
+        
         (int t1, int t2, int t3)[] WinCombos =
         {
             (1,2,3),
@@ -28,7 +28,7 @@ namespace OX
             (3,5,7)
         };
         public static OXGAME[] games;
-        Players _turn = Players.Player1;
+        
         void setTurn(Players turn)
         {
             _turn = turn;
@@ -42,7 +42,7 @@ namespace OX
 
             foreach (OXGAME x in games)
             {
-               // x.oxa = this;
+               
             }
         }
         public Players[] State
@@ -103,20 +103,7 @@ namespace OX
                 Refresh();
             }
 
-            //Players _turn = ((OXGAME)sender).Turn;
-            
 
-
-            //MessageBox.Show("Clicked"+e.ToString());
-            /*switch (turn)
-            {
-                case Players.Player1:
-                    setTurn(Players.Player2);
-                    break;
-                case Players.Player2:
-                    setTurn(Players.Player1);
-                    break;
-            }//*/
 
         }
 

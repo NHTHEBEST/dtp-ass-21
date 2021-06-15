@@ -13,7 +13,7 @@ namespace OX
     public partial class OXGAME : UserControl
     {
         Tile[] Tiles;
-        //public OXA oxa;
+     
 
         public OXGAME()
         {
@@ -21,7 +21,7 @@ namespace OX
             Tiles = new Tile[]{ tile1, tile2, tile3, tile4, tile5, tile6, tile7, tile8, tile9};
             foreach (Tile x in Tiles)
                 x.Click += Tile_Click;
-            //oxa = (OXA)Parent;
+       
 
         }
         public Players[] State 
@@ -32,7 +32,7 @@ namespace OX
                 Players[] r2 = { tile4.State, tile5.State, tile6.State };
                 Players[] r3 = { tile7.State, tile8.State, tile9.State };
 
-                Players[][] s = { r1, r2, r3 };
+ 
                 return new Players[]{ tile1.State, tile2.State, tile3.State,tile4.State, tile5.State, tile6.State,tile7.State, tile8.State, tile9.State};
             } 
         }
@@ -40,7 +40,7 @@ namespace OX
         {
             foreach (var item in Tiles)
             {
-//                item.Clicked = true;
+
                 item.State = Winner;
                 item.Refresh();
             }
@@ -78,7 +78,7 @@ namespace OX
 
         private void Tile_Click(object sender, EventArgs e)
         {
-            //OnClick(e);
+
             if (Enabled && !OXA.InetrTurn)
             {
                 if (Winner != Players.Nobody)
@@ -102,7 +102,7 @@ namespace OX
                     }
                     foreach (var item in Tiles)
                     {
-                        //item.NextSet = _turn;
+                        
                         item.Refresh();
                     }
                 }
@@ -113,7 +113,7 @@ namespace OX
                         item.Refresh();
                     }
 
-                //oxa.AlternativeClick();
+                
                 OnClick(e);
                 Refresh();
                 OXA.WaitForWinnerFill = false;
@@ -132,8 +132,9 @@ namespace OX
             {
                 new Thread(() =>
                 {
-                    //Thread.Sleep(1000);
-                    while (OXA.WaitForWinnerFill) ;
+                    
+                    while (OXA.WaitForWinnerFill) 
+                        Thread.Sleep(1);
                     BeginInvoke((MethodInvoker)delegate
                     {
                         var winner = OXA.games[a].Winner;
