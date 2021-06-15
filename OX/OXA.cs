@@ -29,12 +29,7 @@ namespace OX
         };
         public static OXGAME[] games;
         
-        void setTurn(Players turn)
-        {
-            _turn = turn;
-            foreach (var x in games)
-                x.Turn = turn;
-        }
+
         public OXA()
         {
             InitializeComponent();

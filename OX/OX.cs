@@ -12,7 +12,7 @@ namespace OX
 {
     public partial class OXGAME : UserControl
     {
-        Tile[] Tiles;
+        readonly Tile[] Tiles;
      
 
         public OXGAME()
@@ -28,12 +28,9 @@ namespace OX
         { 
             get 
             {
-                Players[] r1 = { tile1.State, tile2.State, tile3.State };
-                Players[] r2 = { tile4.State, tile5.State, tile6.State };
-                Players[] r3 = { tile7.State, tile8.State, tile9.State };
-
+            
  
-                return new Players[]{ tile1.State, tile2.State, tile3.State,tile4.State, tile5.State, tile6.State,tile7.State, tile8.State, tile9.State};
+                return new Players[]{ tile1.State, tile2.State, tile3.State, tile4.State, tile5.State, tile6.State,tile7.State, tile8.State, tile9.State };
             } 
         }
         public void setState(Players winner)
@@ -69,8 +66,10 @@ namespace OX
                     Players t3 = State[wc.t3 - 1];
                     if (t1 == Players.Nobody)
                         continue;
-                    if (t1 == t2 && t2 == t3 && t1 == t3)
+                    if ((t1 == t2) && (t2 == t3) && (t1 == t3))
+                    {
                         return t1;
+                    }
                 }
                 return Players.Nobody;
             }
@@ -82,7 +81,14 @@ namespace OX
             if (Enabled && !OXA.InetrTurn)
             {
                 if (Winner != Players.Nobody)
+                {
                     setState(Winner);
+                    foreach (var item in Tiles)
+                    {
+                        item.State = Winner;
+                        item.Refresh();
+                    }
+                }
                 else
                 {
                     if (!((Tile)sender).Clicked)
@@ -104,16 +110,11 @@ namespace OX
                     }
                     foreach (var item in Tiles)
                     {
-                        
+
                         item.Refresh();
                     }
                 }
-                if (Winner != Players.Nobody)
-                    foreach (var item in Tiles)
-                    {
-                        item.State = Winner;
-                        item.Refresh();
-                    }
+
 
                 
                 OnClick(e);
