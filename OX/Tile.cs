@@ -10,6 +10,10 @@ using System.Windows.Forms;
 
 namespace OX
 {
+    /// <summary>
+    /// Define The Players Type
+    /// used for tile states
+    /// </summary>
     public enum Players
     {
         Nobody = 0,
@@ -23,7 +27,6 @@ namespace OX
         public Tile()
         {
             InitializeComponent();
-            //Click += Tile_Click;
         }
 
 

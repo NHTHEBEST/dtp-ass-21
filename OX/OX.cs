@@ -124,10 +124,7 @@ namespace OX
 
         public Players Turn { get { return _turn; } set { _turn = value; foreach (var item in Tiles) item.NextSet = value; } }
 
-        private void tile1_Click(object sender, EventArgs e)
-        {
-            changeActivs(0);
-        }
+        
 
         void changeActivs(int a)
         {
@@ -156,6 +153,10 @@ namespace OX
             }
         }
 
+        private void tile1_Click(object sender, EventArgs e)
+        {
+            changeActivs(0);
+        }
         private void tile2_Click(object sender, EventArgs e)
         {
             changeActivs(1);
