@@ -43,7 +43,7 @@ namespace OX
             }
             
         }
-        (int t1, int t2, int t3)[] WinCombos =
+        readonly (int t1, int t2, int t3)[] WinCombos =
         {
             (1,2,3),
             (4,5,6),
@@ -103,8 +103,6 @@ namespace OX
                             case Players.Player2:
                                 _turn = Players.Player1;
                                 break;
-                            default:
-                                break;
                         }
                         OXA.SetTurn(_turn);
                     }
@@ -123,9 +121,9 @@ namespace OX
             }
         }
 
-        public Players _turn = Players.Player1;
+         Players _turn = Players.Player1;
 
-        public Players Turn { get { return _turn; } set { _turn = value; foreach (var item in Tiles) item.NextSet = value; } }
+        public Players Turn { get { return _turn; } set { _turn = value; foreach (var item in Tiles) { item.NextSet = value; } } }
 
         
 
@@ -144,12 +142,18 @@ namespace OX
                         if (winner == Players.Nobody)
                         {
                             foreach (var x in OXA.games)
+                            {
                                 x.Enabled = false;
+                            }
                             OXA.games[a].Enabled = true;
                         }
                         else
+                        {
                             foreach (var x in OXA.games)
+                            {
                                 x.Enabled = true;
+                            }
+                        }
                     });
                     OXA.InetrTurn = false;
                     OXA.WaitForWinnerFill = true;

@@ -13,10 +13,10 @@ namespace OX
 {
     public partial class OXA : UserControl
     {
-        public static bool InetrTurn = false;
-        public static bool WaitForWinnerFill = true;
+        public static bool InetrTurn { get; set; } = false;
+        public static bool WaitForWinnerFill { get; set; } = true;
         
-        (int t1, int t2, int t3)[] WinCombos =
+        readonly (int t1, int t2, int t3)[] WinCombos =
         {
             (1,2,3),
             (4,5,6),
@@ -71,7 +71,9 @@ namespace OX
                     if (t1 == Players.Nobody)
                         continue;
                     if (t1 == t2 && t2 == t3 && t1 == t3)
+                    {
                         return t1;
+                    }
                 }
                 return Players.Nobody;
             }
