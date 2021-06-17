@@ -20,8 +20,9 @@ namespace OX
             InitializeComponent();
             Tiles = new Tile[]{ tile1, tile2, tile3, tile4, tile5, tile6, tile7, tile8, tile9};
             foreach (Tile x in Tiles)
+            {
                 x.Click += Tile_Click;
-       
+            }
 
         }
         public Players[] State 
@@ -65,7 +66,9 @@ namespace OX
                     Players t2 = State[wc.t2 - 1];
                     Players t3 = State[wc.t3 - 1];
                     if (t1 == Players.Nobody)
+                    {
                         continue;
+                    }
                     if ((t1 == t2) && (t2 == t3) && (t1 == t3))
                     {
                         return t1;
@@ -133,9 +136,11 @@ namespace OX
             {
                 new Thread(() =>
                 {
-                    
-                    while (OXA.WaitForWinnerFill) 
+
+                    while (OXA.WaitForWinnerFill)
+                    {
                         Thread.Sleep(1);
+                    }
                     BeginInvoke((MethodInvoker)delegate
                     {
                         var winner = OXA.games[a].Winner;

@@ -13,7 +13,7 @@ namespace OX
 {
     public partial class OXA : UserControl
     {
-        public static bool InetrTurn { get; set; } = false;
+        public static bool InetrTurn { get; set; };
         public static bool WaitForWinnerFill { get; set; } = true;
         
         readonly (int t1, int t2, int t3)[] WinCombos =
@@ -35,10 +35,7 @@ namespace OX
             InitializeComponent();
             games = new OXGAME[] { oxgame1, oxgame2, oxgame6, oxgame3, oxgame4, oxgame5, oxgame7, oxgame8, oxgame9 };
 
-            foreach (OXGAME x in games)
-            {
-               
-            }
+
         }
         public Players[] State
         {
@@ -69,7 +66,9 @@ namespace OX
                     Players t2 = State[wc.t2 - 1];
                     Players t3 = State[wc.t3 - 1];
                     if (t1 == Players.Nobody)
+                    {
                         continue;
+                    }
                     if (t1 == t2 && t2 == t3 && t1 == t3)
                     {
                         return t1;
@@ -83,13 +82,17 @@ namespace OX
         {
 
             foreach (var x in games)
+            {
                 x.Turn = _turn;
+            }
         }
 
         public void AlternativeClick()
         {
             if (Winner != Players.Nobody)
+            {
                 setState(Winner);
+            }
         }
 
         private void Tile_Click(object sender, EventArgs e)
