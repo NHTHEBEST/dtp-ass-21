@@ -43,7 +43,9 @@ namespace OX
             {
                 List<Players> states_ = new List<Players>();
                 foreach (var x in games)
+                {
                     states_.Add(x.Winner);
+                }
                 return states_.ToArray();
             }
         }
