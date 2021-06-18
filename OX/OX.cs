@@ -144,8 +144,11 @@ namespace OX
                             OXA.games[a].Enabled = true;
                         }
                         else
+                        {
                             foreach (var x in OXA.games)
                                 x.Enabled = true;
+                            OXA.games[a].Enabled = false;
+                        }
                     });
                     OXA.InetrTurn = false;
                     OXA.WaitForWinnerFill = true;
