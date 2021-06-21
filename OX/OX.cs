@@ -148,6 +148,12 @@ namespace OX
                             foreach (var x in OXA.games)
                                 x.Enabled = true;
                             OXA.games[a].Enabled = false;
+                            // TODO: disable all won tiles
+                            foreach (var item in OXA.games)
+                            {
+                                if (item.Winner != Players.Nobody)
+                                    item.Enabled = false;
+                            }
                         }
                     });
                     OXA.InetrTurn = false;
