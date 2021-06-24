@@ -16,6 +16,24 @@ namespace OX
         {
             InitializeComponent();
         }
-
+        Players tmp = Players.Nobody;
+        private void tile1_Click(object sender, EventArgs e)
+        {
+            switch (tmp)
+            {
+                case Players.Nobody:
+                    tmp = Players.Player1;
+                    break;
+                case Players.Player1:
+                    tmp = Players.Player2;
+                    break;
+                case Players.Player2:
+                    tmp = Players.Nobody;
+                    break;
+                default:
+                    break;
+            }
+            tile1.OnClick(tmp);
+        }
     }
 }

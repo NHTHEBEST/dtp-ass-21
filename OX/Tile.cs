@@ -35,7 +35,7 @@ namespace OX
 
         private void Tile_Click(object sender, EventArgs e)
         {
-            if (!Clicked && !OXA.InetrTurn)
+            if (!Clicked )//&& !OXA.InetrTurn)
             {
                 _state = NextSet;
                 Clicked = true;
@@ -46,7 +46,7 @@ namespace OX
 
         public void OnClick(Players player)
         {
-            if (!Clicked && !OXA.InetrTurn)
+            //if (!Clicked)// && !OXA.InetrTurn)
             {                
                 _state = player;
                 Clicked = true;
