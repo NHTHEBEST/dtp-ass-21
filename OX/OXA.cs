@@ -85,8 +85,7 @@ namespace OX
         public static void SetTurn(Players _turn)
         {
 
-            foreach (var x in games)
-                x.Turn = _turn;
+           
         }
 
         public void AlternativeClick()

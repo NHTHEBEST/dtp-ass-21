@@ -79,7 +79,7 @@ namespace OX
         private void Tile_Click(object sender, EventArgs e)
         {
             //OnClick(e);
-            if (Enabled && !OXA.InetrTurn)
+            if (Enabled)
             {
                 if (Winner != Players.Nobody)
                     setState(Winner);
@@ -130,35 +130,8 @@ namespace OX
         {
             if (!OXA.InetrTurn)
             {
-                new Thread(() =>
-                {
-                    //Thread.Sleep(1000);
-                    while (OXA.WaitForWinnerFill) ;
-                    BeginInvoke((MethodInvoker)delegate
-                    {
-                        var winner = OXA.games[a].Winner;
-                        if (winner == Players.Nobody)
-                        {
-                            foreach (var x in OXA.games)
-                                x.Enabled = false;
-                            OXA.games[a].Enabled = true;
-                        }
-                        else
-                        {
-                            foreach (var x in OXA.games)
-                                x.Enabled = true;
-                            OXA.games[a].Enabled = false;
-                            // TODO: disable all won tiles
-                            foreach (var item in OXA.games)
-                            {
-                                if (item.Winner != Players.Nobody)
-                                    item.Enabled = false;
-                            }
-                        }
-                    });
-                    OXA.InetrTurn = false;
-                    OXA.WaitForWinnerFill = true;
-                }).Start();
+                
+                
             }
         }
 
