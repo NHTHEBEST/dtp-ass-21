@@ -13,9 +13,17 @@ namespace OX
 {
     public partial class OXA : UserControl
     {
+        /// <summary>
+        /// set to true if between turns
+        /// </summary>
         public static bool InetrTurn = false;
+        /// <summary>
+        /// set to fales while filling in a winer square
+        /// </summary>
         public static bool WaitForWinnerFill = true;
-        //static Players Turn_all = Players.Player1;
+        /// <summary>
+        /// all of the win combos
+        /// </summary>
         (int t1, int t2, int t3)[] WinCombos =
         {
             (1,2,3),
@@ -27,24 +35,22 @@ namespace OX
             (1,5,9),
             (3,5,7)
         };
+        /// <summary>
+        /// array of all internal 3x3 games
+        /// </summary>
         public static OXGAME[] games;
-        Players _turn = Players.Player1;
-        void setTurn(Players turn)
-        {
-            _turn = turn;
-            foreach (var x in games)
-                x.Turn = turn;
-        }
+
         public OXA()
         {
             InitializeComponent();
+            // fill in the games array
             games = new OXGAME[] { oxgame1, oxgame2, oxgame6, oxgame3, oxgame4, oxgame5, oxgame7, oxgame8, oxgame9 };
 
-            foreach (OXGAME x in games)
-            {
-               // x.oxa = this;
-            }
+
         }
+        /// <summary>
+        /// state of each 3x3 game
+        /// </summary>
         public Players[] State
         {
             get
@@ -55,7 +61,10 @@ namespace OX
                 return states_.ToArray();
             }
         }
-
+        /// <summary>
+        /// sets the state of mingames
+        /// </summary>
+        /// <param name="winner">player to set the state to</param>
         void setState(Players winner)
         {
             foreach (var item in games)
@@ -64,10 +73,14 @@ namespace OX
             }
             Refresh();
         }
+        /// <summary>
+        /// winner of 9x9 game
+        /// </summary>
         Players Winner
         {
             get
             {
+                // loop through each win combo
                 foreach (var wc in WinCombos)
                 {
                     Players t1 = State[wc.t1 - 1];
@@ -81,7 +94,10 @@ namespace OX
                 return Players.Nobody;
             }
         }
-
+        /// <summary>
+        /// sets the turn vaubals 
+        /// </summary>
+        /// <param name="_turn">the player to set the turn to</param>
         public static void SetTurn(Players _turn)
         {
 
@@ -89,12 +105,13 @@ namespace OX
                 x.Turn = _turn;
         }
 
-        public void AlternativeClick()
-        {
-            if (Winner != Players.Nobody)
-                setState(Winner);
-        }
 
+
+        /// <summary>
+        /// run on clickes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Tile_Click(object sender, EventArgs e)
         {
             if (Winner != Players.Nobody)
@@ -103,20 +120,7 @@ namespace OX
                 Refresh();
             }
 
-            //Players _turn = ((OXGAME)sender).Turn;
             
-
-
-            //MessageBox.Show("Clicked"+e.ToString());
-            /*switch (turn)
-            {
-                case Players.Player1:
-                    setTurn(Players.Player2);
-                    break;
-                case Players.Player2:
-                    setTurn(Players.Player1);
-                    break;
-            }//*/
 
         }
 
